@@ -1,0 +1,12 @@
+{
+  "name": "com.heiman",
+  "version": "1.0.0",
+  "description": "Adds support for Heiman Smoke Sensor",
+  "main": "app.js",
+  "dependencies": {
+    "homey-zwavedriver": "^2.1.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

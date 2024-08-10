@@ -36,10 +36,15 @@ class GasSensorDevice extends ZwaveDevice {
 			}
 		});
 
-		this._flowTriggerGasAlarm = new Homey.FlowCardTriggerDevice('gas_alarm_trigger').register();
-		this._flowTriggerGasAlarmEnde = new Homey.FlowCardTriggerDevice('gas_alarm_ende').register();
+		//# https://apps.developer.homey.app/upgrade-guides/upgrading-to-sdk-v3
+    	//this._flowTriggerGasAlarm = new Homey.FlowCardTriggerDevice('gas_alarm_trigger').register();
+		//this._flowTriggerGasAlarmEnde = new Homey.FlowCardTriggerDevice('gas_alarm_ende').register();
+		this._flowTriggerGasAlarm = this.homey.trigger.getConditionCard("gas_alarm_trigger").register();
+		this._flowTriggerGasAlarmEnde = this.homey.trigger.getConditionCard("gas_alarm_ende").register();
 
-		const gasAlarmCondition = new Homey.FlowCardCondition("is_gasalarm");
+		//# https://apps.developer.homey.app/upgrade-guides/upgrading-to-sdk-v3
+		//const gasAlarmCondition = new Homey.FlowCardCondition("is_gasalarm");
+		const gasAlarmCondition = this.homey.flow.getConditionCard("is_gasalarm");
 		gasAlarmCondition.register().registerRunListener((args, state) => {
 			let gasAlarm = args.device.getCapabilityValue('alarm_gas');
 			return Promise.resolve(gasAlarm);
